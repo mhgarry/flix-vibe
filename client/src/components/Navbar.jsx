@@ -1,40 +1,38 @@
-import { useState } from "react";
+import React from "react";
 
-const menuItems = [
-  { id: 2, name: "YOUR SPACES", path: "/dashboard" },
-  { id: 3, name: "FAVORITES", path: "/favorites" },
-];
-
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen(!isOpen);
+export default function Navbar() {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   return (
-    <div>
-      <nav className="max-w-nav w-nav flex flex-row items-center px-side-padding py-top-padding">
-        <img
-          className="w-[233px] h-[233px] max-w-[233px] "
-          src="/flix-vibe-logo.png"
-          alt="Flix Vibe Logo"
-        />
-        <ul className="px-[55px] flex flex-row">
-          {menuItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={item.path}
-                className="text-white text-xl decoration-none"
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <button className="w-[599px] px-padding-side py-padding-top bg-light-gray h-[100px] border-none rounded-custom text-lg">
-          LOGIN/SIGNUP
-        </button>
-      </nav>
-    </div>
+    <nav className="relative flex flex-wrap items-center justify-between px-side-padding py-top-padding max-w-full">
+      <div className="flex items-center ">
+        {" "}
+        <a href="/">
+          <img
+            src="/flix-vibe-logo.png"
+            alt="logo"
+            className="w-[14.5625rem] h-[14.5625rem]"
+          />
+        </a>
+      </div>
+      <div className="flex items-center">
+        <h2 className="text-xl text-white whitespace-nowrap mr-14">
+          YOUR SPACES
+        </h2>
+        <h2 className="text-xl text-white whitespace-nowrap mr-14">
+          FAVORITES
+        </h2>
+        <div className="pl-side-padding">
+          <button className="bg-light-gray text-black text-lg rounded-custom hover:bg-black px-5 py-3">
+            <a
+              href="/login"
+              className="text-black hover:text-light-gray no-underline"
+            >
+              LOGIN / SIGN UP
+            </a>
+          </button>
+        </div>
+      </div>
+    </nav>
   );
-};
-
-export default Navbar;
+}

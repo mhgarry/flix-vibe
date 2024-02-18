@@ -45,8 +45,9 @@ export default {
         "top-padding": ".813rem",
       },
       width: {
-        nav: "118.0625rem",
+        nav: "59.188rem",
         screen: "63rem",
+        navButton: "37.438rem",
       },
       borderRadius: {
         custom: "0.8125rem",
