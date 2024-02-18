@@ -23,10 +23,10 @@ export default function Navbar() {
           FAVORITES
         </h2>
         <div className="pl-side-padding">
-          <button className="bg-light-gray text-black text-lg rounded-custom hover:bg-black px-5 py-3">
+          <button className="bg-light-gray text-black text-lg rounded-custom px-5 py-3">
             <a
               href="/login"
-              className="text-black hover:text-light-gray no-underline"
+              className="text-black hover:text-dark-gray no-underline"
             >
               LOGIN / SIGN UP
             </a>
