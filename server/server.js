@@ -5,6 +5,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { typeDefs } from "./typeDefs.mjs";
+import connection from "./database/connection.mjs";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -22,6 +23,6 @@ app.use(
     context: async ({ req }) => ({ token: req.headers.token }),
   })
 );
-
+await connection();
 await new Promise((resolve) => httpServer.listen({ port: 8888 }, resolve));
 console.log(`Server is running on localhost:8888/graphql`);

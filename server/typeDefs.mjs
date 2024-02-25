@@ -7,5 +7,9 @@ export const typeDefs = `#grapql
     createdAt: String!
   }
   type Query {
-    getUsers: [User]
+    user(id: ID!): User
+    users: [User]
+  }
+  type Mutation {
+    createUser(username: String!, email: String!, password: String!): User
   }`;
