@@ -6,11 +6,12 @@ import cors from "cors";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { typeDefs } from "./typeDefs.mjs";
 import connection from "./database/connection.mjs";
-
+import resolvers from "./resolvers.mjs";
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 await server.start();
