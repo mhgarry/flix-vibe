@@ -25,9 +25,11 @@ const userResolvers = {
         console.log("Error creating user", error);
       }
     },
-    async loginUser(_, { username, password }) {
+    async loginUser(_, { login, password }) {
       try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({
+          $or: [{ username: login }, { email: login }],
+        });
         if (!user) {
           throw new Error("User not found");
         }

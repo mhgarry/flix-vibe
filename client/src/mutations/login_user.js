@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
-export const LOGIN_USER = gql`
+const LOGIN_USER = gql`
   #graphql
-  mutation LoginUser($username: String!, $password: String!, $email: String!) {
-    loginUser(username: $username, password: $password, email: $email) {
+  mutation LoginUser($login: String!, $password: String!) {
+    loginUser(login: $login, password: $password) {
       token
       user {
         id
@@ -13,3 +13,5 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export default LOGIN_USER;

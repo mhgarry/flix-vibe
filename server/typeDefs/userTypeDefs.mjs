@@ -5,9 +5,9 @@ export const userTypeDefs = `
     users: [User]
   }
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): User
-    loginUser(username: String!, password: String!): AuthUser
-  }
+  createUser(username: String!, email: String!, password: String!): User
+  loginUser(login: String!, password: String!): AuthUser
+}
   type User {
     id: ID!
     username: String!

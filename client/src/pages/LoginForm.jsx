@@ -1,46 +1,35 @@
+// LoginForm.jsx
 import { useState } from "react";
-import { useAuth } from "../components/AuthContext.jsx"; // Adjust the import path as necessary
+import { useAuth } from "../components/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../hooks/useLoginMutation.jsx"; // Adjust the import path as necessary
+import { useLoginMutation } from "../hooks/useLoginMutation.jsx";
 
-export const LoginForm = () => {
-  const [username, setUsername] = useState("");
+const LoginForm = () => {
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const { loginUser, loading, error } = useLoginMutation(); // Corrected to use useLoginMutation
-  const { setAuthState } = useAuth(); // Assuming setAuthState is correctly implemented in your AuthContext
-  const navigate = useNavigate(); // useNavigate hook for redirection
+  const { loginUser, loading, error } = useLoginMutation();
+  const { login: contextLogin } = useAuth();
+  const navigate = useNavigate();
 
   const handleLoginAttempt = async (e) => {
     e.preventDefault();
-    try {
-      const response = await loginUser(username, password);
-      if (response.data) {
-        setAuthState({
-          token: response.data.loginUser.token,
-          user: response.data.loginUser.user,
-          loading: false,
-          error: null,
-        });
-        navigate("/dashboard"); // Redirect to dashboard on successful login
-      }
-    } catch (err) {
-      console.error(err);
-    }
+    await contextLogin(login, password, loginUser);
+    navigate("/dashboard");
   };
 
   return (
-    <form onSubmit={handleLoginAttempt}>
+    <form onSubmit={handleLoginAttempt} className="text-white">
       <div>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="login">Username or Email</label>
         <input
-          id="username"
+          id="login"
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
           disabled={loading}
         />
       </div>
-      <div>
+      <div className="text-white background-white">
         <label htmlFor="password">Password</label>
         <input
           id="password"
@@ -53,7 +42,9 @@ export const LoginForm = () => {
       <button type="submit" disabled={loading}>
         Log In
       </button>
-      {error && <p>{error.message}</p>} {/* Display error message if present */}
+      {error && <p>{error.message}</p>}{" "}
     </form>
   );
 };
+
+export default LoginForm;

@@ -1,9 +1,9 @@
-import login_user from "../mutations/login_user.js";
+import LOGIN_USER from "../mutations/login_user.js";
 import { useMutation } from "@apollo/client";
 
-export const useLoginMutation = () => {
+const useLoginMutation = () => {
   const [loginUserMutation, { loading, error, data }] = useMutation(
-    login_user,
+    LOGIN_USER,
     {
       onError: (error) => {
         console.error(error);
@@ -12,10 +12,12 @@ export const useLoginMutation = () => {
     }
   );
 
-  const loginUser = async (username, password) => {
+  const loginUser = async (login, password) => {
     return await loginUserMutation({
-      variables: { username, password },
+      variables: { login, password },
     });
   };
   return { loginUser, loading, error, data };
 };
+
+export { useLoginMutation };
