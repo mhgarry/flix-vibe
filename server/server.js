@@ -4,9 +4,9 @@ import http from "http";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { typeDefs } from "./typeDefs.mjs";
+import { typeDefs } from "./typeDefs/typeDefs.mjs";
 import connection from "./database/connection.mjs";
-import resolvers from "./resolvers.mjs";
+import resolvers from "./resolvers/resolvers.mjs";
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
