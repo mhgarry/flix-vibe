@@ -1,12 +1,14 @@
-import express from "express";
-import { ApolloServer } from "@apollo/server";
-import http from "http";
-import { expressMiddleware } from "@apollo/server/express4";
-import cors from "cors";
-import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { typeDefs } from "./typeDefs/typeDefs.mjs";
-import connection from "./database/connection.mjs";
-import resolvers from "./resolvers/resolvers.mjs";
+/* eslint-disable import/extensions */
+import express from 'express';
+import { ApolloServer } from '@apollo/server';
+import http from 'http';
+import { expressMiddleware } from '@apollo/server/express4';
+import cors from 'cors';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { typeDefs } from './typeDefs/typeDefs.mjs';
+import connection from './database/connection.mjs';
+import resolvers from './resolvers/resolvers.mjs';
+
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
@@ -17,7 +19,7 @@ const server = new ApolloServer({
 await server.start();
 
 app.use(
-  "/graphql",
+  '/graphql',
   cors(),
   express.json(),
   expressMiddleware(server, {
@@ -25,5 +27,8 @@ app.use(
   })
 );
 await connection();
-await new Promise((resolve) => httpServer.listen({ port: 8888 }, resolve));
+await new Promise(resolve => {
+  httpServer.listen({ port: 8888 }, resolve);
+});
+// eslint-disable-next-line no-console
 console.log(`Server is running on localhost:8888/graphql`);

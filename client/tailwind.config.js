@@ -8,29 +8,43 @@ export default {
       screens: {
         sm: "480px",
         md: "768px",
-        lg: "976px",
+        lg: "1024px",
         xl: "1440px",
       },
       fontSize: {
         xl: [
           "4.5rem",
           {
-            lineHeight: "1.6",
-            fontWeight: "600",
+            lineHeight: "1.1",
+            fontWeight: "700",
           },
         ],
         lg: [
-          "3.75rem",
+          "2.781rem",
           {
-            lineHeight: "1.5",
+            lineHeight: "1.3",
             fontWeight: "600",
           },
         ],
         md: [
-          "2.313rem",
+          "1.719rem",
           {
-            lineHeight: "1.4",
+            lineHeight: "1.3",
             fontWeight: "600",
+          },
+        ],
+        sm: [
+          "1.063rem",
+          {
+            lineHeight: "1.65",
+            fontWeight: "600",
+          },
+        ],
+        xs: [
+          "0.406rem",
+          {
+            lineHeight: "1.65",
+            fontWeight: "400",
           },
         ],
       },
@@ -41,16 +55,18 @@ export default {
         "light-gray": "#f4f4f4",
       },
       spacing: {
-        "side-padding": "1.313rem",
-        "top-padding": ".813rem",
+        globalPadding: "1.313rem",
       },
       width: {
-        nav: "59.188rem",
-        screen: "63rem",
-        navButton: "37.438rem",
+        nav: "46%",
+        screen: "67%",
+        bigButton: "31%",
+        logo: "4.125rem",
+        hasIcon: "10.5%",
+        container: "calc(100% - 5rem)",
       },
       borderRadius: {
-        custom: "0.8125rem",
+        custom: "1.75rem",
       },
       aspectRatio: {
         "16/9": "16 / 9",

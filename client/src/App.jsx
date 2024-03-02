@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Nav/Navbar2";
 import LoginForm from "./pages/LoginForm";
 import { Route, Routes } from "react-router-dom";
 

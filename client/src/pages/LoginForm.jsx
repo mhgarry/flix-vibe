@@ -15,6 +15,7 @@ const LoginForm = () => {
     e.preventDefault();
     await contextLogin(login, password, loginUser);
     navigate("/dashboard");
+    console.log("User is logged in");
   };
 
   return (
