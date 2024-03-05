@@ -10,6 +10,7 @@ export default {
         md: "768px",
         lg: "1024px",
         xl: "1440px",
+        "2xl": "1760px",
       },
       fontSize: {
         xl: [
@@ -63,7 +64,7 @@ export default {
         bigButton: "31%",
         logo: "4.125rem",
         hasIcon: "10.5%",
-        container: "calc(100% - 5rem)",
+        container: "calc(98vw - 1.313rem)",
       },
       borderRadius: {
         custom: "1.75rem",

@@ -1,8 +1,11 @@
-.icon-container {
+.nav-items {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.nav-item {
+  flex: 1;
+  /* Each item takes up equal space based on available space */
 }
