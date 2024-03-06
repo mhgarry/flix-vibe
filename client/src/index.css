@@ -10,4 +10,5 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  max-width: calc(100vw - 2rem);
 }

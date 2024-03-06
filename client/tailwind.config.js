@@ -75,15 +75,14 @@ export default {
         nav: "46%",
         screen: "67%",
         bigButton: "31%",
-        logo: "4.125rem",
+        logo: "12.25rem",
         hasIcon: "10.5%",
         container: "calc(98vw - 1.313rem)",
         tabletContainer: "calc(100vw - 1.313rem)",
         menuContainer: "calc(66.67% - 1.313rem)",
         mobileMenu: "33.67%",
-      },
-      borderRadius: {
-        custom: "1.75rem",
+        navText: "41.25rem",
+        iconBox: "12.69rem",
       },
       aspectRatio: {
         "16/9": "16 / 9",

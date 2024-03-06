@@ -52,9 +52,9 @@ const Navbar = () => {
     <>
       <nav className="navbar mb-[.1rem] z-50">
         <div className="navbar flex flex-row items-center justify-center max-w-full w-full">
-          <div className="flex flex-row justify-between lg:w-full lg:max-w-full align-center w-tabletContainer">
+          <div className="flex flex-row justify-between align-center w-full">
             {isMobile ? (
-              <div className="flex flex-row justify-between lg:pr-globalPadding  lg:max-w-full w-tabletContainer">
+              <div className="flex flex-row justify-between max-w-full w-tabletContainer">
                 <div className="w-logo ">
                   <Link to="/">
                     <img
@@ -64,25 +64,23 @@ const Navbar = () => {
                     />
                   </Link>
                 </div>
-                <div className="lg:hidden flex flex-row justify-between w-[29.9%]">
-                  <div className="flex flex-row justify-between">
-                    <ul className="flex flex-row text-small text-white list-none w-[100px] text-center ">
-                      {withIcon.map((item) => (
-                        <NavItem
-                          key={item.id}
-                          path={item.path}
-                          content={item.content}
-                          isSettings={item.isSettings}
-                          isLogin={item.isLogin}
-                        />
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="lg:hidden cursor-pointer z-100 block">
+                <div className="lg:hidden flex flex-row justify-between w-[32vw] items-top align-top">
+                  <ul className="flex flex-row text-small w-[64%] text-white list-none text-center ">
+                    {withIcon.map((item) => (
+                      <NavItem
+                        key={item.id}
+                        path={item.path}
+                        content={item.content}
+                        isSettings={item.isSettings}
+                        isLogin={item.isLogin}
+                      />
+                    ))}
+                  </ul>
+                  <div className="lg:hidden cursor-pointer w-[23.3%] p-0 m-0  z-100 flex">
                     <img
                       src={MenuOpen}
                       alt="Close Menu"
-                      className="bg-transparent"
+                      className="bg-transparent p-0 m-0 h-[72px] w-[72px] z-100"
                       onClick={handleDrawer}
                     />
                     <MobileDrawer
@@ -105,8 +103,8 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            <div className="justify-between flex flex-row lg:w-nav">
-              <ul className="flex-row text-medium text-white list-none w-[41.25rem] justify-between hidden lg:flex">
+            <div className="hidden lg:flex lg:flex-row lg:w-nav lg:align-top lg:items-top">
+              <ul className="flex flex-row w-navText justify-between text-white list-none">
                 {navItems.map((item) => (
                   <NavItem
                     key={item.id}
@@ -115,9 +113,7 @@ const Navbar = () => {
                   />
                 ))}
               </ul>
-            </div>
-            <div className=" flex-row items-center justify-center w-[12.688rem] hidden lg:flex">
-              <ul className="flex flex-row text-sm text-white list-none w-[12.688rem] text-center justify-between">
+              <ul className="flex flex-row w-iconBox justify-around">
                 {withIcon.map((item) => (
                   <NavItem
                     key={item.id}
@@ -128,6 +124,32 @@ const Navbar = () => {
                   />
                 ))}
               </ul>
+              {/* <div className="flex flex-row justify-between w-[900px]">
+              <div className="justify-between flex flex-row w-nav  lg:w-nav">
+                <ul className="flex-row text-medium text-white list-none w-[41.25rem] justify-between hidden lg:flex">
+                  {navItems.map((item) => (
+                    <NavItem
+                      key={item.id}
+                      path={item.path}
+                      content={item.content}
+                    />
+                  ))}
+                </ul>
+              </div>
+              <div className=" flex-row items-center justify-center w-[12.688rem] hidden lg:flex">
+                <ul className="flex flex-row text-sm text-white list-none w-[12.688rem] text-center justify-between">
+                  {withIcon.map((item) => (
+                    <NavItem
+                      key={item.id}
+                      path={item.path}
+                      content={item.content}
+                      isSettings={item.isSettings}
+                      isLogin={item.isLogin}
+                    />
+                  ))}
+                </ul>
+              </div>
+            </div> */}
             </div>
           </div>
         </div>

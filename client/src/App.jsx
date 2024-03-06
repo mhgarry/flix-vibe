@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App p-globalPadding">
+    <div className="App pl-paddingGlobal pr-paddingGlobal pt-paddingGlobal pb-paddingGlobal">
       <Navbar />
 
       <Routes>

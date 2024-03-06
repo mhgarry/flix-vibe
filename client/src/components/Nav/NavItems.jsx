@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import menuDown from "../../assets/Flix_Icons/MenuDown.svg"; // Ensure correct path
-import settingsIcon from "../../assets/Flix_Icons/Settings.svg"; // Ensure correct path
-import "./nav.css"; // Ensure correct path
+import menuDown from "../../assets/Flix_Icons/MenuDown.svg";
+import settingsIcon from "../../assets/Flix_Icons/Settings.svg";
+import "./nav.css";
 
 const NavItem = ({ path, content, isSettings, isLogin }) => {
-  // Use individual props instead of an item object
-
-  let className = "no-underline text-md text-white";
+  let className =
+    "no-underline text-md text-white hover:text-dark-gray whitespace-nowrap";
   if (isLogin || isSettings) {
-    className += " text-sm items-center align-center justify-center"; // Removed duplicate text-white and added space
+    className += " text-sm items-center align-center justify-center";
   }
 
   const renderIcon = () => {
@@ -22,12 +21,12 @@ const NavItem = ({ path, content, isSettings, isLogin }) => {
   };
 
   const contentWithIcon = (
-    <>
+    <div className=" flex flex-col items-center">
       {content}
       {(isLogin || isSettings) && (
         <div className="icon-container">{renderIcon()}</div>
       )}
-    </>
+    </div>
   );
 
   return (

@@ -1,4 +1,5 @@
 import Player from "../components/videoPlayer/Player";
+import BottomNavBar from "../components/bottomnav/BottomNavBar";
 
 const Home = () => {
   return (
@@ -6,6 +7,7 @@ const Home = () => {
       <div className="w-screen h-[66.78vh] rounded-custom">
         <Player />
       </div>
+      <BottomNavBar />
     </div>
   );
 };
