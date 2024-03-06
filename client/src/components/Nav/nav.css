@@ -8,3 +8,33 @@
 .nav-item {
   flex: 1;
 }
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  /* Start off-screen */
+  width: 33%;
+  /* Width of the menu */
+  height: 100%;
+  background-color: #fff;
+  transition: right 0.3s;
+  /* Smooth transition for the menu */
+  z-index: 1000;
+  /* Ensure it's above other content */
+}
+
+.mobileMenu.open {
+  right: 0;
+  /* Slide in */
+}
+
+.closeButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 13px;
+  cursor: pointer;
+}
+
+
+/* Add other styles as needed */

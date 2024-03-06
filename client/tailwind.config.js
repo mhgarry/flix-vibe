@@ -5,6 +5,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        custom: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      },
+      borderRadius: {
+        custom: "1.75rem",
+      },
       screens: {
         sm: "480px",
         md: "768px",
@@ -22,6 +28,13 @@ export default {
         ],
         lg: [
           "2.781rem",
+          {
+            lineHeight: "1.3",
+            fontWeight: "600",
+          },
+        ],
+        xmd: [
+          "2.063rem",
           {
             lineHeight: "1.3",
             fontWeight: "600",
@@ -65,7 +78,9 @@ export default {
         logo: "4.125rem",
         hasIcon: "10.5%",
         container: "calc(98vw - 1.313rem)",
-        tabletContainer: "calc(98vw - 1.313rem)",
+        tabletContainer: "calc(100vw - 1.313rem)",
+        menuContainer: "calc(66.67% - 1.313rem)",
+        mobileMenu: "33.67%",
       },
       borderRadius: {
         custom: "1.75rem",

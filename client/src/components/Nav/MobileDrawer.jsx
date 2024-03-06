@@ -1,42 +1,69 @@
+import closeMenu from "../../assets/Flix_Icons/Close-Mobile-Menu.svg";
+import { Link } from "react-router-dom";
+import login from "../../assets/Flix_Icons/Login-Mobile.svg";
+import textLogo from "/Flix-Text-Logo-Mobile-Black.svg";
 import { useState } from "react";
-import { CloseMenu } from "../../assets/Flix_Icons/Close-Mobile-Menu.svg";
-import { Login } from "../../assets/Flix_Icons/Login-Mobile.svg";
 
-const MobileDrawer = () => {
-  const [openDrawer, setOpenDrawer] = useState(true);
-
-  const handleDrawer = () => {
-    setOpenDrawer(!openDrawer);
-  };
+const MobileDrawer = ({ isOpen, onClose }) => {
+  const navItems = [
+    {
+      id: 1,
+      path: "/your-spaces",
+      content: "YOUR SPACES",
+    },
+    {
+      id: 2,
+      path: "/favorites",
+      content: "FAVORITES",
+    },
+    {
+      id: 3,
+      path: "/filler",
+      content: "FILLER",
+    },
+    {
+      id: 4,
+      path: "/filler",
+      content: "FILLER",
+    },
+  ];
 
   return (
-    <div className="w-[682px] flex flex-col items-center justify-center">
-      <div className="flex flex-row justify-end w-full pr-globalPadding pt-globalPadding mb-[21[px]">
-        <button onClick={handleDrawer}>
-          <img src={CloseMenu} alt="Close Menu" />
-        </button>
+    <nav className={`mobileMenu ${isOpen ? "open" : ""} bg-light-gray`}>
+      <div className="closeButtonContainer bg">
+        <img src={closeMenu} alt="Close Menu" onClick={onClose} />
       </div>
-      <div className="flex flex-col w-full pl-global mb-55px">
-        <p href="/your-spaces" className="text-black text-[33px]">
-          YOUR SPACES
-        </p>
+      <div className="flex flex-col gap-[31px] pl-[13px]">
+        {navItems.map((item) => {
+          return (
+            <Link
+              to={item.path}
+              key={item.id}
+              className="text-black text-xmd no-underline"
+            >
+              {item.content}
+            </Link>
+          );
+        })}
       </div>
-      <div className="flex flex-col w-full pl-global mb-55px">
-        <p href="/favorites" className="text-black text-[33px]">
-          FAVORITES
-        </p>
+      <Link
+        to="/login"
+        className="text-black text-md no-underline mx-globalPadding pb-[31px] flex flex-col items-center"
+      >
+        <div className="flex flex-row w-[91%] h-[61px] bg-black rounded-custom mt-[31px] mb-[31px]  align-center items-center px-globalPadding justify-between">
+          <Link to="/login">
+            <p className="no-underline text-white text-sm">Login/Sign Up</p>
+          </Link>
+
+          <Link to="/login">
+            <img src={login} alt="Login" className="h-8 w-8" />
+          </Link>
+        </div>
+      </Link>
+      <div className="flex flex-row justify-end items-center pr-[7px] pb-[7px]">
+        <img src={textLogo} alt="FlixVibe" />
       </div>
-      <div className="mb-[31.2px] w-full px-global">
-        <button
-          className="w-full h-[61.8px] rounded-custom flex flex-row"
-          type="submit"
-          src="/login"
-        >
-          <p className="text-black text-[33px]">LOGIN/SIGN UP</p>
-          <img src={Login} alt="Login" />
-        </button>
-      </div>
-    </div>
+    </nav>
   );
 };
 
