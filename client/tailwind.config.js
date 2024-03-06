@@ -41,14 +41,14 @@ export default {
           },
         ],
         md: [
-          "1.719rem",
+          "clamp(1.125rem, 0.4107rem + 1.1161vi, 1.75rem)",
           {
             lineHeight: "1.3",
             fontWeight: "600",
           },
         ],
         sm: [
-          "1.063rem",
+          "clamp(0.5rem, 0.2185rem + 0.9383vi, 1.063rem)",
           {
             lineHeight: "1.65",
             fontWeight: "600",

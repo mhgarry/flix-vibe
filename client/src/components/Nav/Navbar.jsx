@@ -50,11 +50,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar mb-[.1rem] z-50">
         <div className="navbar flex flex-row items-center justify-center max-w-full w-full">
-          <div className="flex flex-row justify-between lg:w-full lg:max-w-full align-center px-21 w-tabletContainer">
+          <div className="flex flex-row justify-between lg:w-full lg:max-w-full align-center w-tabletContainer">
             {isMobile ? (
-              <div className="flex flex-row justify-between lg:pr-globalPadding pt-globalPadding lg:max-w-container w-tabletContainer ">
+              <div className="flex flex-row justify-between lg:pr-globalPadding  lg:max-w-full w-tabletContainer">
                 <div className="w-logo ">
                   <Link to="/">
                     <img
@@ -64,8 +64,8 @@ const Navbar = () => {
                     />
                   </Link>
                 </div>
-                <div className="lg:hidden flex flex-row justify-between w-[305px]">
-                  <div className="flex flex-row  ">
+                <div className="lg:hidden flex flex-row justify-between w-[29.9%]">
+                  <div className="flex flex-row justify-between">
                     <ul className="flex flex-row text-small text-white list-none w-[100px] text-center ">
                       {withIcon.map((item) => (
                         <NavItem
@@ -78,7 +78,7 @@ const Navbar = () => {
                       ))}
                     </ul>
                   </div>
-                  <div className="lg:hidden cursor-pointer">
+                  <div className="lg:hidden cursor-pointer z-100 block">
                     <img
                       src={MenuOpen}
                       alt="Close Menu"
@@ -93,7 +93,7 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-row justify-between w-container">
+              <div className="flex flex-row justify-between w-full">
                 <div>
                   <Link to="/">
                     <img
@@ -106,7 +106,7 @@ const Navbar = () => {
               </div>
             )}
             <div className="justify-between flex flex-row lg:w-nav">
-              <ul className="flex-row text-medium text-white list-none w-[660px] justify-between hidden lg:flex">
+              <ul className="flex-row text-medium text-white list-none w-[41.25rem] justify-between hidden lg:flex">
                 {navItems.map((item) => (
                   <NavItem
                     key={item.id}
@@ -116,8 +116,8 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
-            <div className=" flex-row items-center justify-center w-[204px] hidden lg:flex">
-              <ul className="flex flex-row text-small text-white list-none w-[203px] text-center justify-between">
+            <div className=" flex-row items-center justify-center w-[12.688rem] hidden lg:flex">
+              <ul className="flex flex-row text-sm text-white list-none w-[12.688rem] text-center justify-between">
                 {withIcon.map((item) => (
                   <NavItem
                     key={item.id}
