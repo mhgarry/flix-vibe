@@ -10,6 +10,25 @@ export const AuthProvider = ({ children }) => {
     loading: false,
     error: null,
   });
+  const register = async (username, email, password, registerUser) => {
+    try {
+      const response = await registerUser(username, email, password);
+      if (response.data) {
+        setAuthState((prevState) => ({
+          ...prevState,
+          token: response.data.registerUser.token,
+          user: response.data.registerUser.user,
+          loading: false,
+          error: null,
+        }));
+      }
+    } catch (error) {
+      setAuthState((prevState) => ({
+        ...prevState,
+        error: error.message,
+      }));
+    }
+  };
 
   const login = async (login, password, loginUser) => {
     try {
@@ -31,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const value = { ...authState, login };
+  const value = { ...authState, login, register };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

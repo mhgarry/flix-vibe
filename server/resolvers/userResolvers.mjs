@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 import User from '../models/User.mjs';
 
 dotenv.config();
@@ -18,35 +19,60 @@ const userResolvers = {
         },
     },
     Mutation: {
-        async createUser(_, { username, email, password, token }) {
+        async registerUser(_, { username, email, password }) {
             try {
-                const newUser = new User({ username, email, password, token });
+                const existingUser = await User.findOne({
+                    $or: [{ username }, { email }],
+                });
+                if (existingUser) {
+                    throw new Error('User already exists');
+                }
+
+                const hashedPassword = await bcrypt.hash(password, 10);
+                const newUser = new User({
+                    username,
+                    email,
+                    password: hashedPassword,
+                });
+
                 await newUser.save();
-                return newUser;
+
+                const token = jwt.sign(
+                    { userId: newUser.id },
+                    process.env.JWT_SECRET,
+                    { expiresIn: '1h' }
+                );
+
+                return {
+                    token,
+                    user: newUser,
+                };
             } catch (error) {
+                console.log('Error creating user', error);
                 throw new Error(error.message);
             }
         },
+
         async loginUser(_, { login, password }) {
             try {
                 const user = await User.findOne({
                     $or: [{ username: login }, { email: login }],
                 });
+
                 if (!user) {
                     throw new Error('User not found');
                 }
 
-                const isValid = await user.checkPassword(password);
+                const isValid = await bcrypt.compare(password, user.password);
 
                 if (!isValid) {
                     throw new Error('Invalid password');
                 }
+
                 const token = jwt.sign(
                     { userId: user.id },
                     process.env.JWT_SECRET,
-                    {
-                        expiresIn: '1h',
-                    }
+                    { expiresIn: '1h' }
                 );
 
                 return {

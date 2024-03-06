@@ -19,24 +19,6 @@ const UserSchema = new Schema(
         password: {
             type: String,
             required: true,
-            // validate: {
-            //     validator: password => {
-            //         const validLength = password.length >= 8;
-            //     const hasNumber = /\d/.test(password);
-            //     const hasLowerCase = /[a-z]/.test(password);
-            //     const hasUpperCase = /[A-Z]/.test(password);
-            //     const hasNonAlphanumeric = /\W/.test(password);
-            //     return (
-            //         validLength &&
-            //         hasNumber &&
-            //         hasLowerCase &&
-            //         hasUpperCase &&
-            //         hasNonAlphanumeric
-            //     );
-            // },
-            // message:
-            // 'Password must be at least 8 characters long and contain at least one number, one lowercase letter, one uppercase letter, and one non-alphanumeric character',
-            // },
         },
     },
     { timestamps: true }

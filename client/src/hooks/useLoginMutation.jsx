@@ -7,7 +7,6 @@ const useLoginMutation = () => {
     {
       onError: (error) => {
         console.error(error);
-        // show a modal or some kind of seamless error message to the user that dynamically changes based on the error message
       },
     }
   );
