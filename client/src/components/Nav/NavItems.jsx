@@ -1,35 +1,42 @@
 import { Link } from "react-router-dom";
-import menuDown from "../../assets/Flix_Icons/MenuDown.svg";
-import settingsIcon from "../../assets/Flix_Icons/Settings.svg";
-import "./nav.css";
+import menuDown from "../../assets/Flix_Icons/MenuDown.svg"; // Ensure correct path
+import settingsIcon from "../../assets/Flix_Icons/Settings.svg"; // Ensure correct path
+import "./nav.css"; // Ensure correct path
 
-const NavItem = ({ item }) => {
+const NavItem = ({ path, content, isSettings, isLogin }) => {
+  // Use individual props instead of an item object
+
   let className = "no-underline text-md text-white";
-  if (item.isLogin || item.isSettings) {
-    className =
-      "text-sm text-white no-underline items-center align-center justify-center";
+  if (isLogin || isSettings) {
+    className += " text-sm items-center align-center justify-center"; // Removed duplicate text-white and added space
   }
 
   const renderIcon = () => {
-    if (item.isLogin) {
+    if (isLogin) {
       return <img src={menuDown} alt="Login" />;
     }
-    if (item.isSettings) {
+    if (isSettings) {
       return <img src={settingsIcon} alt="Settings" />;
     }
     return null;
   };
 
-  const content = (
-    <Link to={item.path} className={className}>
-      {item.content}
-      {(item.isLogin || item.isSettings) && (
+  const contentWithIcon = (
+    <>
+      {content}
+      {(isLogin || isSettings) && (
         <div className="icon-container">{renderIcon()}</div>
       )}
-    </Link>
+    </>
   );
 
-  return <li className="">{content}</li>;
+  return (
+    <li>
+      <Link to={path} className={className}>
+        {contentWithIcon}
+      </Link>
+    </li>
+  );
 };
 
 export default NavItem;

@@ -1,30 +1,22 @@
 import { useState, useEffect } from "react";
 
 const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
   useEffect(() => {
-    const media = window.matchMedia(query);
-    const handleChange = (e) => setMatches(e.matches);
+    const mediaQueryList = window.matchMedia(query);
+    const documentChangeHandler = () => setMatches(mediaQueryList.matches);
 
-    setMatches(media.matches);
-
-    const addEventListenerSupported =
-      typeof media.addEventListener === "function";
-
-    if (addEventListenerSupported) {
-      media.addEventListener("change", handleChange);
-    } else {
-      media.addListener(handleChange);
-    }
+    // Modern browsers support addEventListener on MediaQueryList.
+    mediaQueryList.addEventListener
+      ? mediaQueryList.addEventListener("change", documentChangeHandler)
+      : mediaQueryList.addListener(documentChangeHandler); // Fallback for older browsers
 
     return () => {
-      if (addEventListenerSupported) {
-        media.removeEventListener("change", handleChange);
-      } else {
-        // Fallback for older browsers
-        media.removeListener(handleChange);
-      }
+      // Remove the event listener on cleanup
+      mediaQueryList.removeEventListener
+        ? mediaQueryList.removeEventListener("change", documentChangeHandler)
+        : mediaQueryList.removeListener(documentChangeHandler); // Fallback for older browsers
     };
   }, [query]);
 

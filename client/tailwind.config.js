@@ -65,6 +65,7 @@ export default {
         logo: "4.125rem",
         hasIcon: "10.5%",
         container: "calc(98vw - 1.313rem)",
+        tabletContainer: "calc(98vw - 1.313rem)",
       },
       borderRadius: {
         custom: "1.75rem",
