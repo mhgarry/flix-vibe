@@ -9,6 +9,7 @@ type Query {
 type Mutation {
   registerUser(username: String!, email: String!, password: String!): AuthUser
   loginUser(login: String!, password: String!): AuthUser
+  logoutUser(token: String!): Boolean
 }
 
 type User {

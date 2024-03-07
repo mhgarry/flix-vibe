@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import User from '../models/User.mjs';
+import { invalidateToken } from '../utils/TokenUtils.mjs';
 
 dotenv.config();
 
@@ -84,6 +85,20 @@ const userResolvers = {
                 throw new Error(error.message);
             }
         },
+    },
+    async logoutUser(_, { token }) {
+        try {
+            // Verify the token before blacklisting
+            jwt.verify(token, process.env.JWT_SECRET);
+
+            // Invalidate the token
+            await invalidateToken(token);
+
+            return true;
+        } catch (error) {
+            console.log('Error logging out', error);
+            throw new Error('Invalid token.');
+        }
     },
 };
 export default userResolvers;

@@ -23,7 +23,7 @@ const LoginForm = () => {
         // The exact field to pass depends on how you've structured your AuthContext
         contextLogin(response.data.loginUser.user);
         console.log("Login Successful");
-        navigate("/dashboard");
+        navigate("/your-spaces");
       }
     } catch (error) {
       console.error("Login failed:", error);
