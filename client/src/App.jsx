@@ -1,5 +1,5 @@
 import Navbar from "./components/Nav/Navbar";
-import LoginForm2 from "./components/forms/test/LoginFormTest";
+import LoginForm from "./components/forms/LoginForm";
 import Home from "./pages/Home";
 import RegisterUser from "./components/forms/RegisterUser";
 import Dashboard from "./pages/Dashboard";
@@ -12,7 +12,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login-2" element={<LoginForm2 />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/your-spaces" element={<Dashboard />} />
       </Routes>

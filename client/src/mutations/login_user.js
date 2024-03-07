@@ -6,8 +6,8 @@ const LOGIN_USER = gql`
     loginUser(login: $login, password: $password) {
       token
       user {
-        id
         username
+        id
         email
         createdAt
       }

@@ -72,9 +72,9 @@ export default {
         globalPadding: "1.313rem",
       },
       width: {
-        nav: "46%",
+        nav: "calc(46% - 10px)",
         screen: "67%",
-        bigButton: "31%",
+        bigButton: "calc(31.25% - 1.313rem)",
         logo: "12.25rem",
         hasIcon: "10.5%",
         container: "calc(98vw - 1.313rem)",

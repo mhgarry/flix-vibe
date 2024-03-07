@@ -50,7 +50,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar mb-[.1rem] z-50">
+      <nav className="navbar  z-50">
         <div className="navbar flex flex-row items-center justify-center max-w-full w-full">
           <div className="flex flex-row justify-between align-center w-full">
             {isMobile ? (
