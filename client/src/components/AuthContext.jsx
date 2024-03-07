@@ -1,4 +1,5 @@
 // AuthContext.jsx
+import CustomError from "../components/errors/CustomError";
 import React, { createContext, useContext, useState } from "react";
 import { useMutation } from "@apollo/client";
 import LOGOUT_USER from "../mutations/logout_user";
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(() => {
     // Attempt to get a token from localStorage
     const token = localStorage.getItem("token");
-    console.log(token);
+
     return {
       token: token,
       user: null,
@@ -36,6 +37,7 @@ export const AuthProvider = ({ children }) => {
       console.log("Token:", loginUser.token);
     },
     onError: (error) => {
+      console.error("Login error:", error.message); // Error feedback in developer console
       setAuthState((prevState) => ({
         ...prevState,
         loading: false,
@@ -135,6 +137,7 @@ export const AuthProvider = ({ children }) => {
           error: null,
         }));
         localStorage.setItem("token", token);
+        return response; // Return the response for further checks
       }
     } catch (error) {
       setAuthState((prevState) => ({
@@ -142,6 +145,16 @@ export const AuthProvider = ({ children }) => {
         loading: false,
         error: error.message,
       }));
+      return (
+        <div className="w-full h-full bg-red-500 text-xl text-white">
+          <CustomError
+            message={error.message}
+            error={error}
+            variant="error"
+            open={true}
+          />
+        </div>
+      );
     }
   };
 

@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 import aspectRatio from "@tailwindcss/aspect-ratio";
+import withMt from "@material-tailwind/react/utils/withMT";
 
-export default {
+export default withMt({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -90,4 +91,4 @@ export default {
     },
   },
   plugins: [aspectRatio],
-};
+});

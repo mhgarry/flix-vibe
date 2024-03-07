@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import menuDown from "../../assets/Flix_Icons/MenuDown.svg";
 import settingsIcon from "../../assets/Flix_Icons/Settings.svg";
+import { Input } from "@material-tailwind/react";
 import "./nav.css";
 
-const NavItem = ({ path, content, isSettings, isLogin }) => {
+const NavItem = ({ path, content, isSettings, isLogin, isInput }) => {
   let className =
-    "no-underline text-md text-white hover:text-dark-gray whitespace-nowrap";
+    "no-underline text-md bg-transparent text-white y whitespace-nowrap";
   if (isLogin || isSettings) {
     className += " text-sm items-center align-center justify-center";
   }

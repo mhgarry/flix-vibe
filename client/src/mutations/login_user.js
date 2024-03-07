@@ -6,13 +6,12 @@ const LOGIN_USER = gql`
     loginUser(login: $login, password: $password) {
       token
       user {
-        username
         id
+        username
         email
         createdAt
       }
     }
   }
 `;
-
 export default LOGIN_USER;
