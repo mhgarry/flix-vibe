@@ -1,33 +1,25 @@
 import { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../hooks/useLoginMutation";
 import LoginIcon from "../../assets/Flix_Icons/Login-Desktop.svg";
 
 const LoginForm = () => {
-  const [login, setLogin] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { loginUser, loading, error } = useLoginMutation();
-  const { login: contextLogin } = useAuth();
+  const { login, loading, error } = useAuth();
   const navigate = useNavigate();
 
   const handleLoginAttempt = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await loginUser(login, password);
-
-      // If there's no error and login is successful
-      if (response && response.data) {
-        // Assuming that `contextLogin` expects the user data object
-        // The exact field to pass depends on how you've structured your AuthContext
-        contextLogin(response.data.loginUser.user);
-        console.log("Login Successful");
-        navigate("/your-spaces");
-      }
+      await login(username, password); // Use the login from the AuthContext
+      // If login is successful, the AuthContext will update the authState and navigate should be called
+      console.log("Login attempt was successful!");
+      navigate("/your-spaces");
     } catch (error) {
-      console.error("Login failed:", error);
-      console.log(error.message);
+      console.error(
+        "Login attempt was unsuccessful, please check your credentials and try again."
+      );
     }
   };
 
@@ -51,7 +43,7 @@ const LoginForm = () => {
               id="login"
               type="text"
               value={login}
-              onChange={(e) => setLogin(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               disabled={loading}
               className="w-[600px] h-[100px] bg-light-gray text-black no-underline rounded-[8px] text-md login-username"
               placeholder="Username or Password"

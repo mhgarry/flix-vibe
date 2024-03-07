@@ -16,16 +16,6 @@ const MobileDrawer = ({ isOpen, onClose }) => {
       path: "/favorites",
       content: "FAVORITES",
     },
-    {
-      id: 3,
-      path: "/filler",
-      content: "FILLER",
-    },
-    {
-      id: 4,
-      path: "/filler",
-      content: "FILLER",
-    },
   ];
 
   return (

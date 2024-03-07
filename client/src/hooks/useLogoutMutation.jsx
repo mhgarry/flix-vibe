@@ -15,6 +15,7 @@ const useLogoutMutation = () => {
       variables: { token },
     });
   };
+  return { logoutUser, loading, error, data };
 };
 
 export { useLogoutMutation };

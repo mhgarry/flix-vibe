@@ -13,7 +13,7 @@ export const invalidateToken = async token => {
 export const isTokenBlacklisted = async token => {
     try {
         const result = await BlacklistToken.findOne({ token });
-        return !!result; // Convert to boolean: true if token is found, false otherwise
+        return !!result;
     } catch (error) {
         console.error('Error checking token blacklist:', error);
         throw error;

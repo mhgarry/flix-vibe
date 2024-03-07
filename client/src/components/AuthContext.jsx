@@ -8,24 +8,32 @@ import REGISTER_USER from "../mutations/register_user";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [authState, setAuthState] = useState({
-    token: null,
-    user: null,
-    loading: false,
-    error: null,
+  const [authState, setAuthState] = useState(() => {
+    // Attempt to get a token from localStorage
+    const token = localStorage.getItem("token");
+    console.log(token);
+    return {
+      token: token,
+      user: null,
+      loading: false,
+      error: null,
+      isLoggingOut: false,
+    };
   });
 
-  // LOGIN mutation
   const [loginUserMutation] = useMutation(LOGIN_USER, {
     onCompleted: (data) => {
       const { loginUser } = data;
       setAuthState({
-        token: loginUser.token,
         user: loginUser.user,
+        token: loginUser.token,
+
         loading: false,
         error: null,
       });
       localStorage.setItem("token", loginUser.token);
+      console.log("Login successful.");
+      console.log("Token:", loginUser.token);
     },
     onError: (error) => {
       setAuthState((prevState) => ({
@@ -39,24 +47,49 @@ export const AuthProvider = ({ children }) => {
   // LOGOUT mutation
   const [logoutUserMutation] = useMutation(LOGOUT_USER, {
     onCompleted: () => {
+      console.log("Logout successful.");
       setAuthState({
         token: null,
         user: null,
         loading: false,
         error: null,
-        setLoggingOut: false,
+        isLoggingOut: false,
       });
       localStorage.removeItem("token");
     },
     onError: (error) => {
+      console.error("Logout error:", error.message); // Error feedback in developer console
       setAuthState((prevState) => ({
         ...prevState,
         loading: false,
         error: error.message,
-        setLoggingOut: false,
+        isLoggingOut: false,
       }));
     },
   });
+
+  const logout = async () => {
+    if (authState.token) {
+      setAuthState((prevState) => ({ ...prevState, isLoggingOut: true }));
+      try {
+        await logoutUserMutation({
+          variables: { token: authState.token },
+        });
+        console.log("Logout successful.");
+      } catch (error) {
+        console.error("Logout error:", error.message);
+        setAuthState((prevState) => ({
+          ...prevState,
+          loading: false,
+          error: error.message,
+          isLoggingOut: false,
+        }));
+      }
+    } else {
+      console.log("Current token:", authState.token);
+      console.error("No token found, cannot log out.");
+    }
+  };
 
   // REGISTER mutation
   const [registerUserMutation] = useMutation(REGISTER_USER, {
@@ -79,20 +112,37 @@ export const AuthProvider = ({ children }) => {
     },
   });
 
-  // Context actions
-  const login = async (username, password) => {
-    setAuthState((prevState) => ({ ...prevState, loading: true }));
-    await loginUserMutation({
-      variables: { login: username, password },
-    });
-  };
+  // const login = async (username, token, password) => {
+  //   setAuthState((prevState) => ({ ...prevState, loading: true }));
 
-  const logout = async () => {
+  //   await loginUserMutation({
+  //     variables: { username, token, password },
+  //   });
+  // };
+  const login = async (login, password) => {
     setAuthState((prevState) => ({ ...prevState, loading: true }));
-
-    await logoutUserMutation({
-      variables: { token: authState.token },
-    });
+    try {
+      const response = await loginUserMutation({
+        variables: { login, password },
+      });
+      if (response.data) {
+        const { token, user } = response.data.loginUser;
+        setAuthState((prevState) => ({
+          ...prevState,
+          token,
+          user,
+          loading: false,
+          error: null,
+        }));
+        localStorage.setItem("token", token);
+      }
+    } catch (error) {
+      setAuthState((prevState) => ({
+        ...prevState,
+        loading: false,
+        error: error.message,
+      }));
+    }
   };
 
   const register = async (username, email, password) => {
@@ -102,7 +152,6 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  // Provide the state and actions to the context
   const value = {
     ...authState,
     login,

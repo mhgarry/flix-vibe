@@ -1,7 +1,7 @@
+// LOGIN_USER.gql
 import { gql } from "@apollo/client";
 
 const LOGIN_USER = gql`
-  #graphql
   mutation LoginUser($login: String!, $password: String!) {
     loginUser(login: $login, password: $password) {
       token
@@ -9,6 +9,7 @@ const LOGIN_USER = gql`
         id
         username
         email
+        createdAt
       }
     }
   }

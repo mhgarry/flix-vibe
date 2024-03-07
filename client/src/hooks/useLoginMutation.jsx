@@ -1,5 +1,6 @@
-import LOGIN_USER from "../mutations/login_user.js";
+// useLoginMutation.js
 import { useMutation } from "@apollo/client";
+import LOGIN_USER from "../mutations/login_user";
 
 const useLoginMutation = () => {
   const [loginUserMutation, { loading, error, data }] = useMutation(
@@ -16,6 +17,7 @@ const useLoginMutation = () => {
       variables: { login, password },
     });
   };
+
   return { loginUser, loading, error, data };
 };
 

@@ -124,32 +124,6 @@ const Navbar = () => {
                   />
                 ))}
               </ul>
-              {/* <div className="flex flex-row justify-between w-[900px]">
-              <div className="justify-between flex flex-row w-nav  lg:w-nav">
-                <ul className="flex-row text-medium text-white list-none w-[41.25rem] justify-between hidden lg:flex">
-                  {navItems.map((item) => (
-                    <NavItem
-                      key={item.id}
-                      path={item.path}
-                      content={item.content}
-                    />
-                  ))}
-                </ul>
-              </div>
-              <div className=" flex-row items-center justify-center w-[12.688rem] hidden lg:flex">
-                <ul className="flex flex-row text-sm text-white list-none w-[12.688rem] text-center justify-between">
-                  {withIcon.map((item) => (
-                    <NavItem
-                      key={item.id}
-                      path={item.path}
-                      content={item.content}
-                      isSettings={item.isSettings}
-                      isLogin={item.isLogin}
-                    />
-                  ))}
-                </ul>
-              </div>
-            </div> */}
             </div>
           </div>
         </div>

@@ -10,7 +10,6 @@ const BlacklistTokenSchema = new Schema({
         type: Date,
         required: true,
         default: Date.now,
-        index: { expires: '1h' }, // Tokens expire in 1 hour
     },
 });
 

@@ -2,7 +2,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt';
-import Joi from 'joi';
 
 const UserSchema = new Schema(
     {
@@ -23,18 +22,6 @@ const UserSchema = new Schema(
     },
     { timestamps: true }
 );
-
-UserSchema.statics.validateUser = userData => {
-    const schema = Joi.object({
-        username: Joi.string().min(3).max(30).required(),
-        email: Joi.string().email().required(),
-        password: Joi.string()
-            .min(8)
-            .pattern(/^[a-zA-Z0-9!@#$%^&*]{8,30}$/)
-            .required(),
-    });
-    return schema.validate(userData);
-};
 
 // eslint-disable-next-line func-names,, consistent-return
 UserSchema.pre('save', async function (next) {
