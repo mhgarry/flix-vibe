@@ -1,14 +1,15 @@
-import { useState } from "react";
-import { useAuth } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
-import CustomError from "../errors/CustomError";
+import { useState } from 'react';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
+import CustomError from '../errors/CustomError';
 
-import { Typography, Input, Button } from "@material-tailwind/react";
+import { Typography, Input, Button } from '@material-tailwind/react';
 
-import backgroundImage from '../../assets/flix-illustration.png'
+import backgroundImage from '../../assets/flix-illustration.png';
+
 export function SignIn() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const { login, error } = useAuth();
   const navigate = useNavigate();
 
@@ -16,90 +17,82 @@ export function SignIn() {
     e.preventDefault();
     const response = await login(userName, password);
     if (response && response.data) {
-      navigate("/your-spaces");
+      navigate('/your-spaces');
     }
   };
 
   return (
-    <section className="grid h-screen items-center lg:grid-cols-2">
-      
-      <div className="my-auto p-8 text-center sm:p-10 md:p-20 xl:px-32 xl:py-24">
-             <Typography variant="h3" color="white" className="mb-2 text-left">
-          Sign In
-         </Typography>
-        <Typography color="gray" className="mb-16 font-normal text-left">
-         Enter your email and password to sign in
-         </Typography>
-        <form onSubmit={handleLoginAttempt} className="mx-auto  text-left">
-          <div className="mb-6">
-            <label htmlFor="username">
-              <Typography variant="small" className="mb-2 block font-medium text-white">
-                Username
-              </Typography>
-            </label>
-            <Input
-              id="username"
-              color="white"
-              size="lg"
-              type="text"
-              name="username"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="Username*"
-              className="focus:!border-t-gray-900"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password">
-              <Typography variant="small" className="mb-2 block font-medium text-white">
-                Password
-              </Typography>
-            </label>
-            <Input
-              id="password"
-              color="white"
-              size="lg"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password*"
-              className="focus:!border-t-gray-900"
-              required
-            />
-          </div>
-            
-          <Button color="gray" size="lg" className=" mb-6" type="submit" fullWidth>
+    <section className="flex flex-col md:flex-row md:justify-between items-center w-full min-h-screen">
+      <div className="flex flex-1 justify-between items-center p-2 sm:p-4 md:p-8 xl:px-globalPadding xl:py-24">
+        <div className="w-full max-w-md">
+          <Typography variant="h3" color="white" className="mb-2">
             Sign In
-          </Button>
-          {error && <CustomError errorMessage={error} />}
-         <div className="flex flex-wrap items-center justify-between gap-2">
-                     <div className="flex flex-wrap items-center justify-between gap-2">
-            
+          </Typography>
+          <Typography color="gray" className="mb-16 font-normal">
+            Enter your email and password to sign in
+          </Typography>
+          <form onSubmit={handleLoginAttempt} className="text-left">
+            <div className="mb-6">
+              <label htmlFor="username">
+                <Typography variant="small" className="mb-2 block font-medium text-white">
+                  Username
+                </Typography>
+              </label>
+              <Input
+                id="username"
+                color="white"
+                size="lg"
+                type="text"
+                name="username"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder="Username*"
+                className="focus:!border-t-gray-900"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <label htmlFor="password">
+                <Typography variant="small" className="mb-2 block font-medium text-white">
+                  Password
+                </Typography>
+              </label>
+              <Input
+                id="password"
+                color="white"
+                size="lg"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password*"
+                className="focus:!border-t-gray-900"
+                required
+              />
+            </div>
+            <Button color="gray" size="lg" className="mb-6" type="submit" fullWidth>
+              Sign In
+            </Button>
+            {error && <CustomError errorMessage={error} />}
             <Typography as="a" href="#" color="gray" className="font-medium">
               Forgot password
             </Typography>
-            
-          </div>
-          
-          </div>
-          <Typography
-            color="gray"
-            className=" text-left font-normal"
-          >
-            Not registered?{" "}
+          </form>
+          <Typography color="gray" className="mt-4 font-normal">
+            Not registered?{' '}
             <a href="/register" className="font-medium text-gray-900">
               Create account
             </a>
           </Typography>
-        </form>
+        </div>
       </div>
-      <img
-        src={backgroundImage}
-        alt="background image"
-        className="hidden h-screen w-50 object-cover lg:block"
-      />
+      <div className="flex-1 hidden md:block">
+        <img
+          src={backgroundImage}
+          alt="background image"
+          className="w-full h-full object-cover"
+        />
+      </div>
     </section>
   );
 }
