@@ -22,7 +22,7 @@ export function SignIn() {
   };
 
   return (
-    <section className="flex flex-col md:flex-row md:justify-between  w-full min-h-screen">
+    <section className="flex flex-col md:flex-row justify-between md:justify-between  w-full min-h-screen">
       <div className="flex flex-1 justify-between items-top p-2 sm:p-4 md:p-8 xl:px-globalPadding xl:py-24">
         <div className="w-full max-w-[800px]">
           <Typography variant="h3" color="white" className="mb-2">
@@ -86,7 +86,7 @@ export function SignIn() {
           </Typography>
         </div>
       </div>
-      <div className="flex-1 hidden md:block">
+      <div className="flex-2 hidden md:block">
         <img
           src={backgroundImage}
           alt="background image"
