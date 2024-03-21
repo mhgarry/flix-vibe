@@ -28,7 +28,7 @@ export function SignIn() {
           <Typography variant="h3" color="white" className="mb-2">
             Sign In
           </Typography>
-          <Typography color="gray" className="mb-16 font-normal">
+          <Typography className="mb-16 font-normal text-dark-gray">
             Enter your email and password to sign in
           </Typography>
           <form onSubmit={handleLoginAttempt} className="text-left">
@@ -74,13 +74,13 @@ export function SignIn() {
               Sign In
             </Button>
             {error && <CustomError errorMessage={error} />}
-            <Typography as="a" href="#" color="gray" className="font-medium">
+            <Typography as="a" href="#" color="white" className="font-medium">
               Forgot password
             </Typography>
           </form>
-          <Typography color="gray" className="mt-4 font-normal">
+          <Typography color="gray" className="mt-4 font-normal text-dark-gray">
             Not registered?{' '}
-            <a href="/register" className="font-medium text-gray-900">
+            <a href="/register" className="font-medium text-white">
               Create account
             </a>
           </Typography>
